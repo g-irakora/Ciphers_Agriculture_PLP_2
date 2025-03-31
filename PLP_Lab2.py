@@ -20,6 +20,26 @@ def connect_to_db():
         print(f"Error connecting to database: {e}")
     return None
 
+<<<<<<< HEAD
+=======
+# Function to validate cooperative or individual choice
+def validate_cooperative_or_individual():
+    while True:
+        print("Are you registering as a cooperative or an individual?")
+        print("1. Cooperative")
+        print("2. Individual")
+        try:
+            choice = int(input("Enter your choice (1 or 2): "))
+            if choice == 1:
+                return "cooperative"
+            elif choice == 2:
+                return "individual"
+            else:
+                print("Invalid choice. Please enter 1 for Cooperative or 2 for Individual.")
+        except ValueError:
+            print("Invalid input. Please enter a number (1 or 2).")
+
+>>>>>>> 8bd69773160c9188b8c3d0066fb8939032e7b7a9
 # Create base class
 class User:
     def __init__(self, name, email, phone, password):
@@ -30,11 +50,18 @@ class User:
 
 # Create subclasses
 class Farmer(User):
+<<<<<<< HEAD
     def __init__(self, name, email, phone, password, location, user_type):
         super().__init__(name, email, phone, password)
         self.location = location
         self.crop_types = []  # List to store multiple crop types
         self.user_type = user_type  # Cooperative or Individual
+=======
+    def __init__(self, name, email, phone, password, location):
+        super().__init__(name, email, phone, password)
+        self.location = location
+        self.crop_types = []  # List to store multiple crop types
+>>>>>>> 8bd69773160c9188b8c3d0066fb8939032e7b7a9
 
     # Add method to input multiple crop types
     def add_crops(self):
@@ -99,9 +126,9 @@ class Subscription:
         print(f"User Type: {self.user.user_type}")
         print(f"Cost: {self.cost}$ per month")
         if self.publish_permission:
-            print("You are allowed to publish on the platform.")
+            print("You are allowed to publish on the platform.")        
 
-class Chat_Box:
+            class Chat_Box:
     def __init__(self):
         self.messages = []
 
@@ -212,6 +239,39 @@ def main():
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
 
+<<<<<<< HEAD
+=======
+class User_Choice:
+    def choose_user_type(self):
+        while True:
+            try:
+                print("Are you a Farmer or a Buyer?")
+                print("1. Farmer")
+                print("2. Buyer")
+                choice = int(input("Enter your choice (1 or 2): "))
+
+                if choice == 1:
+                    name = input("Enter your Name: ")
+                    email = input("Enter your Email: ")
+                    phone = input("Enter your Phone Number: ")
+                    password = input("Enter your Password: ")
+                    location = input("Enter your location: ")
+                    return Farmer(name, email, phone, password, location)
+                elif choice == 2:
+                    name = input("Enter your Name: ")
+                    email = input("Enter your Email: ")
+                    phone = input("Enter your Phone Number: ")
+                    password = input("Enter your Password: ")
+                    location = input("Enter your location: ")
+                    cooperative = input("Are you a cooperative? (yes/no): ").lower()
+                    individual = input("Are you an individual buyer? (yes/no): ").lower()
+                    return Buyer(name, email, phone, password, location, cooperative, individual)
+                else:
+                    print("Invalid choice. Please enter 1 or 2.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+>>>>>>> 8bd69773160c9188b8c3d0066fb8939032e7b7a9
 # Entry point
 if __name__ == "__main__":
     main()
