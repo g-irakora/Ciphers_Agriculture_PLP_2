@@ -169,3 +169,52 @@ def main():
     subscription.choose_subscription_type()
     subscription.display_subscription_details()
 
+    # Step 3: Chat functionality
+    while True:
+        print("\nWhat would you like to do?")
+        print("1. Send a message")
+        print("2. View messages in chat box")
+        print("3. Exit")
+
+        action = input("Enter your choice (1, 2 or 3): ")
+        if action == "1":
+            print("\nOther Users on this App:")
+            recipients = [u for u in registered_users if u != user]
+            if not recipients:
+                print("No other users available to communicate with.")
+                continue
+            for i, recipient in enumerate(recipients, start=1):
+                if isinstance(recipient, Farmer):
+                    print(f"{i}. Farmer - Name: {recipient.name}, Crop Types: {', '.join(recipient.crop_types)}, Location: {recipient.location}")
+                elif isinstance(recipient, Buyer):
+                    print(f"{i}. Buyer - Name: {recipient.name}, Location: {recipient.location}, Cooperative Buyer: {recipient.cooperative}, Individual Buyer: {recipient.individual}")
+
+            try:
+                recipient_choice = int(input("Enter the number of the recipient you want to communicate with: "))
+                if 1 <= recipient_choice <= len(recipients):
+                    recipient = recipients[recipient_choice - 1]
+
+                    print("\nRecipient Information:")
+                    if isinstance(recipient, Farmer):
+                        print(f"Name: {recipient.name}")
+                        print(f"Location: {recipient.location}")
+                        print(f"Crop Types: {', '.join(recipient.crop_types)}")
+                    elif isinstance(recipient, Buyer):
+                        print(f"Name: {recipient.name}")
+                        print(f"Location: {recipient.location}")
+                        print(f"Cooperative: {recipient.cooperative}")
+                        print(f"Individual: {recipient.individual}")
+
+                    message = input("Enter your message: ")
+                    chat_box.send_message(user.name, recipient.name, message)
+                else:
+                    print("Invalid choice. Please select a valid recipient number.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        elif action == "2":
+            chat_box.view_messages()
+        elif action == "3":
+            print("Exiting the program...")
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
