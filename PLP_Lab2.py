@@ -218,3 +218,37 @@ def main():
             break
         else:
             print("Invalid choice. Please enter 1, 2, or 3.")
+
+class User_Choice:
+    def choose_user_type(self):
+        while True:
+            try:
+                print("Are you a Farmer or a Buyer?")
+                print("1. Farmer")
+                print("2. Buyer")
+                choice = int(input("Enter your choice (1 or 2): "))
+
+                if choice == 1:
+                    name = input("Enter your Name: ")
+                    email = input("Enter your Email: ")
+                    phone = input("Enter your Phone Number: ")
+                    password = input("Enter your Password: ")
+                    location = input("Enter your location: ")
+                    return Farmer(name, email, phone, password, location)
+                elif choice == 2:
+                    name = input("Enter your Name: ")
+                    email = input("Enter your Email: ")
+                    phone = input("Enter your Phone Number: ")
+                    password = input("Enter your Password: ")
+                    location = input("Enter your location: ")
+                    cooperative = input("Are you a cooperative? (yes/no): ").lower()
+                    individual = input("Are you an individual buyer? (yes/no): ").lower()
+                    return Buyer(name, email, phone, password, location, cooperative, individual)
+                else:
+                    print("Invalid choice. Please enter 1 or 2.")
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+
+# Entry point
+if __name__ == "__main__":
+    main()
