@@ -128,7 +128,7 @@ class Subscription:
         if self.publish_permission:
             print("You are allowed to publish on the platform.")        
 
-            class Chat_Box:
+class Chat_Box:
     def __init__(self):
         self.messages = []
 
