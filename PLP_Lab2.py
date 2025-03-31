@@ -123,3 +123,49 @@ class Subscription:
         print(f"Cost: {self.cost}$ per month")
         if self.publish_permission:
             print("You are allowed to publish on the platform.")        
+
+            class Chat_Box:
+    def __init__(self):
+        self.messages = []
+
+    def send_message(self, sender, recipient, message):
+        self.messages.append(f"{sender} to {recipient}: {message}")
+        print(f"{sender} to {recipient}: {message}")
+
+    def view_messages(self):
+        print("\nChat Messages:")
+        if not self.messages:
+            print("No messages yet.")
+        else:
+            for message in self.messages:
+                print(message)
+
+# Global list to store all registered users
+registered_users = []
+
+def main():
+    chat_box = Chat_Box()
+
+    print("Welcome to Smart Agricultural Trade System (SATS).")
+    user_choice = User_Choice()
+    user = user_choice.choose_user_type()
+    registered_users.append(user)
+
+    # Display user details
+    print("\nYour Profile Information:")
+    print(f"Name: {user.name}")
+    print(f"Email: {user.email}")
+    print(f"Phone: {user.phone}")
+    print(f"Location: {user.location if hasattr(user, 'location') else 'N/A'}")
+    if isinstance(user, Farmer):
+        user.add_crops()  # Allow farmer to input multiple crop types
+        print(f"Crop Types: {', '.join(user.crop_types)}")
+    elif isinstance(user, Buyer):
+        print(f"Cooperative: {user.cooperative}")
+        print(f"Individual Buyer: {user.individual}")
+
+    # Step 2: Subscription
+    subscription = Subscription(user)
+    subscription.choose_subscription_type()
+    subscription.display_subscription_details()
+
